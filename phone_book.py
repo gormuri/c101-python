@@ -4,18 +4,19 @@
 
 import os
 
-phone_book ={}
+phone_book ={} #dictonary containing your phonbook
 
-def cleer_screen(confirm=True):
-	if confirm == True:
+def cleer_screen(confirm=True): # function to clear screen between menu selections
+	if confirm == True: # do i want the user to press enter before clearing or not defaulted to true
 		spacer()
 		cont = raw_input("press enter to continue")
 	os.system('cls' if os.name == 'nt' else 'clear')
-def spacer():
+	
+def spacer(): # just adding 2 lines of nothing :)
 	print " "
 	print " "
 
-def print_menu():
+def print_menu(): # print ouy main menu
 	spacer()
 	print " #############################################"
 	print " #     phone book v0.1                       #"
@@ -28,37 +29,37 @@ def print_menu():
 	print " #############################################"
 	spacer()
 
-def add_number():
+def add_number(): # add number to phone_book var
 	spacer()
 	name = 	raw_input("enter name: ")
 	number = raw_input("enter number: ")
 	phone_book[name] = number
 	cleer_screen(False)
 
-def del_number():
+def del_number(): # del a entry from the phonebook
 	spacer()
 	name = raw_input("enter name to delete: ")
 	print "are you sure you want to delete " + name 
 	yesno = raw_input("y/n: ")
-	if yesno == "y" or yesno == "Y":
-		try:
+	if yesno == "y" or yesno == "Y": # just a safty to make sure you want do del the name you entered
+		try: # had to put this in a try except so the program would not crash if user enter a name thats not in the book 
 			print "deleting " + name + " - " + phone_book[name] 
 			del phone_book[name]
 		except:
 			print "name not found"
 	cleer_screen()
 
-def find_number():
+def find_number(): # find a number by name 
 	spacer()
 	name = raw_input("enter name: ")
-	try:
+	try: # had to use try exept in case some one enters a name thats not in the dictonary
 		print name + " " + phone_book[name]
 		cleer_screen()
 	except :
 		print "that name is not in the phone book"
 		cleer_screen()
 
-def list_numbers():
+def list_numbers(): # list all names and numbers in the phone book
 	spacer()
 	print "number -  name"
 	for x,y in enumerate(sorted(phone_book)):
@@ -69,24 +70,18 @@ def list_numbers():
 # application
 #------------------------------
 cleer_screen(False)
-while True :
+while True : # main while loop 
 	print_menu()
 	input = raw_input("make your selection ")
-	print input
 	cleer_screen(False)
 	if input == "1":
 		add_number()
-	
 	if input == "2":
 		del_number()
-
 	if input == "3":
 		find_number()
-
 	if input == "4":
 		list_numbers()
-
-
 	if input.strip() == 'Q' or input.strip() == 'q' :
 		print "Bye !"
 		break
