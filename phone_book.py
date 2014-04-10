@@ -71,7 +71,7 @@ def list_numbers(): # list all names and numbers in the phone book
 def save_book(): #save the array to a file
 	file = open('phone-book.dat' , 'w+')
 	for (id, item) in phone_book.items():
-		print id, item
+		#print id, item
 		file.write(str(id) + '-' + str(item) + '\n')
 		
 def load_book(): #open the phone-book.dat
