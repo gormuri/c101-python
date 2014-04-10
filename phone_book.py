@@ -11,7 +11,7 @@ def cleer_screen(confirm=True): # function to clear screen between menu selectio
 		spacer()
 		cont = raw_input("press enter to continue")
 	os.system('cls' if os.name == 'nt' else 'clear')
-	
+
 def spacer(): # just adding 2 lines of nothing :)
 	print " "
 	print " "
@@ -25,6 +25,8 @@ def print_menu(): # print ouy main menu
 	print " # 2. del Person/number                      #"
 	print " # 3. find number                            #"
 	print " # 4. List all numbers                       #"
+	print " # s. Save phone book                        #"
+	print " # l. Load phone book                        #"
 	print " # q  Quit                                   #"
 	print " #############################################"
 	spacer()
@@ -65,6 +67,24 @@ def list_numbers(): # list all names and numbers in the phone book
 	for x,y in enumerate(sorted(phone_book)):
 		print  phone_book[y] + " - " + y
 	cleer_screen()
+
+def save_book(): #save the array to a file
+	file = open('phone-book.dat' , 'w+')
+	for (id, item) in phone_book.items():
+		print id, item
+		file.write(str(id) + '-' + str(item) + '\n')
+		
+def load_book(): #open the phone-book.dat
+	try:
+		file = open('phone-book.dat' , 'r+')
+		for line in file:
+			tmpInput = line.split('-')
+			tmpInput2 = tmpInput[1].split()
+			phone_book[tmpInput[0]] = tmpInput2[0]
+	except:
+		print "there is no saved phonebook"
+		cleer_screen()
+	
  	
 #------------------------------
 # application
@@ -82,7 +102,10 @@ while True : # main while loop
 		find_number()
 	if input == "4":
 		list_numbers()
+	if input == "s":
+		save_book()
+	if input == "l":
+		load_book()
 	if input.strip() == 'Q' or input.strip() == 'q' :
 		print "Bye !"
 		break
-		
