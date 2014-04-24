@@ -47,7 +47,7 @@ for num in numbers:
         if is_prime(num):
                 print(num , ' is a prime number')
 
-
+# and then just print out the results note I use print() becouse I'm using python3  but should run fine in python 2
 print('the sum of all the numbers in our file is: ' , sum)
 print('the largest number in our file is: ' , max)
 print('the smalest number in our file is: ' , min)
